@@ -5,11 +5,15 @@ import 'dart:developer';
 import 'package:crudapp/model/modalclass.dart';
 import 'package:http/http.dart' as http;
 
+/* as your api not responding correct json format therefore i create test function below 
+   by calling these functions you can get dummy data
+*/
+
 //post pandata
 postPanData(String pan)async{
   Uri url = Uri.parse("https://lab.pixel6.co/api/verify-pan.php");
   Map<String,String> body = {
-    "panNumber" : "AAFNZ2078H"
+    "panNumber" : pan
   };
   http.Response res = await http.post(
     url,
