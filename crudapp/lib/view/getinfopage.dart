@@ -20,7 +20,7 @@ class GetInfoPage extends StatefulWidget {
 TextEditingController panController = TextEditingController();
 TextEditingController nameController = TextEditingController();
 TextEditingController emailController = TextEditingController();
-TextEditingController phoneController = TextEditingController(text: "+91");
+TextEditingController phoneController = TextEditingController();
 TextEditingController add1Controller = TextEditingController();
 TextEditingController add2Controller = TextEditingController();
 TextEditingController postcodeController = TextEditingController();
@@ -90,7 +90,7 @@ class _GetInfoPageState extends State<GetInfoPage> {
                   }
                   else{
                     showDialog(
-                        // ignore: use_build_context_synchronously
+                      // ignore: use_build_context_synchronously
                       context: context, 
                       builder: (_) => AlertDialog(
                         title: const Text("error"),
@@ -133,7 +133,10 @@ class _GetInfoPageState extends State<GetInfoPage> {
                 controller: nameController,
                 showCursor: false,
                 readOnly: true,
-                validator: (value) => (value == null || value.isEmpty)? "failed to get data": null,
+                validator: (value) => 
+                (value == null || value.trim().isEmpty)? 
+                "failed to get data": 
+                null,
                 decoration: InputDecoration(
                   hintText: "Full Name",
                   labelText: "Full Name",
@@ -189,9 +192,9 @@ class _GetInfoPageState extends State<GetInfoPage> {
               child: TextFormField(
                 controller: phoneController,
                 validator: (value) => 
-                (value == null || value == "+91") ? 
+                (value == null || value.trim().isEmpty) ? 
                 "please enter number": 
-                (validation.mobileValidate(content: value.trim().substring(3)))?
+                (validation.mobileValidate(content: value.trim()))?
                 null:
                 "please enter valid number",
                 //initialValue: "+91",
@@ -200,6 +203,7 @@ class _GetInfoPageState extends State<GetInfoPage> {
                   labelText: "Enter Mobile Number",
                   hintStyle: const TextStyle(fontSize: 14,),
                   labelStyle: const TextStyle(fontSize: 14,),
+                  prefix: const Text("+91 "),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide: const BorderSide(
@@ -219,7 +223,10 @@ class _GetInfoPageState extends State<GetInfoPage> {
               width: 330,
               child: TextFormField(
                 controller: add1Controller,
-                validator: (value) => (value == null || value.isEmpty)? "please enter address": null,
+                validator: (value) => 
+                (value == null || value.trim().isEmpty)? 
+                "please enter address": 
+                null,
                 decoration: InputDecoration(
                   hintText: "flat no/building name",
                   labelText: "Enter Address 1",
@@ -268,7 +275,8 @@ class _GetInfoPageState extends State<GetInfoPage> {
               width: 330,
               child: TextFormField(
                 controller: postcodeController,
-                validator: (value) => (value == null || value.isEmpty)? 
+                validator: (value) => 
+                (value == null || value.trim().isEmpty)? 
                 "please enter postcode":
                 (value.trim().length == 6)? 
                 null:
@@ -347,7 +355,10 @@ class _GetInfoPageState extends State<GetInfoPage> {
               child: TextFormField(
                 controller: cityController,
                 readOnly: true,
-                validator: (value) => (value == null || value.isEmpty)? "failed to get value": null,
+                validator: (value) => 
+                (value == null || value.trim().isEmpty)? 
+                "failed to get value": 
+                null,
                 decoration: InputDecoration(
                   hintText: "Ex: Pune",
                   labelText: "City",
@@ -373,7 +384,10 @@ class _GetInfoPageState extends State<GetInfoPage> {
               child: TextFormField(
                 controller: stateController,
                 readOnly: true,
-                validator: (value) => (value == null || value.isEmpty)? "failed to get value": null,
+                validator: (value) => 
+                (value == null || value.trim().isEmpty)? 
+                "failed to get value": 
+                null,
                 decoration: InputDecoration(
                   hintText: "Ex: Maharashtra",
                   labelText: "State",
