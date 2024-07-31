@@ -1,5 +1,6 @@
 import 'package:crudapp/comtroller/submitdata.dart';
 import 'package:crudapp/main.dart';
+import 'package:crudapp/model/modalclass.dart';
 import 'package:crudapp/view/getinfopage.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class UserListPage extends StatefulWidget {
   State<UserListPage> createState() => _UserListPageState();
 }
 
-List userData= [];
+List<UserInfo> userData= [];
 class _UserListPageState extends State<UserListPage> {
   @override
   Widget build(BuildContext context) {
@@ -24,19 +25,19 @@ class _UserListPageState extends State<UserListPage> {
         itemCount: userData.length,
         itemBuilder: (_,i){
           return Container(
-            height: 80,
+            height: 100,
             width: 330,
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(15),
             margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: Colors.grey[100],
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
-                  offset: Offset(0,0),
-                  blurRadius: 0,
-                  spreadRadius: 0,
-                  color: Colors.black
+                  offset: Offset(2,1),
+                  blurRadius: 3,
+                  spreadRadius: 1,
+                  color: Colors.grey
                 ),
               ],
             ),
@@ -47,10 +48,32 @@ class _UserListPageState extends State<UserListPage> {
                 const SizedBox(width: 10,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text("${userData[i].pan}"),
-                    Text("${userData[i].name}"),
-                    Text("${userData[i].postCode}"),
+                    Text(
+                      "${userData[i].pan}",
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal
+                      ),
+                    ),
+                    Text(
+                      "${userData[i].name}",
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal
+                      ),
+                    ),
+                    Text(
+                      "${userData[i].city}",
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal
+                      ),
+                    ),
                   ],
                 ),
                 const Spacer(),
@@ -94,6 +117,7 @@ class _UserListPageState extends State<UserListPage> {
             ),
           );
         },
+        shape: const CircleBorder(),
         child: const Icon(
           Icons.add,
         ), 

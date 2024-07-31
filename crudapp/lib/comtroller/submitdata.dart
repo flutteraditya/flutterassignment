@@ -6,6 +6,7 @@ import 'package:crudapp/model/modalclass.dart';
 import 'package:crudapp/view/getinfopage.dart';
 import 'package:crudapp/view/userlist.dart';
 
+//to submit the data which create new user of update existing user
 onSubmit(bool isUpdate,UserInfo user)async{
   if(isUpdate){
     await updateData("userinfo", user);
@@ -17,11 +18,12 @@ onSubmit(bool isUpdate,UserInfo user)async{
   await fetchData();
 }
 
+//to clear all controller 
 clearControllers(){
     panController.clear();
     nameController.clear();
     emailController.clear();
-    phoneController.text = "+91";
+    phoneController.clear();
     add1Controller.clear();
     add2Controller.clear();
     postcodeController.clear();
@@ -30,6 +32,7 @@ clearControllers(){
 }
 
 
+//to add data in list from databse to display user list 
 fetchData()async{
   userData = [];
   List lst = await getData("userinfo");
@@ -50,6 +53,7 @@ fetchData()async{
   }
 }
 
+//if want to update existing user this method fill the previous data of user in textfield
 updateFields(UserInfo user){
   panController.text = user.pan;
   nameController.text = user.name;

@@ -1,5 +1,5 @@
 
-
+//model class for pan api response
 class PanInfo{
   String? status;
   int? statusCode;
@@ -24,6 +24,7 @@ class PanInfo{
   }
 }
 
+//modelclass for postcode api response
 class PostCodeInfo{
   String? status;
   int? statusCode;
@@ -69,6 +70,7 @@ class LocationInfo{
 }
 
 
+//class which store one user info and return map to add info in database 
 class UserInfo{
 
   String pan;
